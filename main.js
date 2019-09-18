@@ -59,8 +59,12 @@ function reduce(array, f, acc) {
 //wordLengths("hello its me") // [5,3,2]
 
 function wordLengths(str) {
-    // TODO: your code here 
+    return map(str, function(element, i){
+    	return element.length;
+    })
 }
+ // because we want to make changes on the string that we gave it as a parameter and return an array of the same length then
+ // i had to use map in oder to return an array with different values but te same length
 
 //=============================================================================
 /*                                  Q2                                    */
@@ -72,8 +76,15 @@ function wordLengths(str) {
 // countOccurrences("hello, world!", "l"); // 3
 
 function countOccurrences(string, character) {
-    // your code is here
+	var count = 0;
+    return reduce(string, function(element, i){
+    	if(element === character){
+    		count++;
+    	}
+    })
 }
+
+// because we are trying to get only one value as a result, i used reduce in order to operate over the given string and return one value as a result
 
 //=============================================================================
 /*                                  Q3                                    */
@@ -84,7 +95,11 @@ function countOccurrences(string, character) {
 // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
 
 function wordsLongerThanThree(str) {
-    // TODO: your code here 
+    return filter(str, function(element, i){
+    	if(element.length > 3){
+    		return element;
+    	}
+    })
 }
 
 //=============================================================================
@@ -99,7 +114,20 @@ function wordsLongerThanThree(str) {
 //repeatString('dog', 3); // => 'dog' + 'dog' + 'dog' => 'dogdogdog'
 
 function repeatString(str, count) { 
- // TODO: your code here 
+	var i = 0; 
+	var result = " ";
+	if(i === count){
+		return result;
+	}else if(count === 0){
+		return " ";
+	}else if(count > 0){
+		return str;
+	}else{
+		return "there is no negative count";
+	}
+	i++;
+	return repeatString(str, count, i, result);
+
 } 
  
 
@@ -128,7 +156,30 @@ function repeatString(str, count) {
 // pizza.eatSlice();
 // pizza.eatSlice();
 
-// Write your code here .....
+	function makePizza(crust, size, numberOfSlice){
+		var crust = crust;
+		var size = size;
+		var numberOfSlice = numberOfSlice;
+		var ingredients = [];
+
+		return{
+			addIngredients: function(ingredient){
+				ingredients.push(ingredient);
+			}
+			displayIngredaints: function(array){
+				return "The" + " " + "ingredients" + " " + "are" + ":" + array[i] + "," + 
+
+			}
+			bakePizza: function(){
+				return "your " + crust + " " + size + " " + numberOfSlice + " " + "slice " + "pizza " + "is " + "done";
+			}
+			eatSlice: function(){
+				if(numberOfSlice > 0){
+					numberOfSlice--;
+				}
+			}
+		}
+	}
 
 //=============================================================================
 /*                                  Q6                                      */
@@ -152,9 +203,38 @@ c- Change the "currentRead" to be the first book from "toRead" array
 d- Decrement the number of "unread" books
 */
 
-// Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
+function readingClass(read, unRead, toRead, currentRead, readBooks){
+	var read = read;
+	var unRead = unRead;
+	var toRead = toRead;
+	var currentRead = currentRead;
+	var readBooks = readBooks;
+	var reading = {};
+	reading.addBook = addBook;
+	reading.finishCurrentBook = finishCurrentBook;
+	return reading;
 
-// Write your code here .....
+}
+
+var addBook = function(bookName){
+	this.toRead.push(bookName);
+	this.unRead++;
+}
+var finishCurrentBook = function(){
+	this.readBooks.push(this.currentRead);
+	this.read++;
+	this.toRead[0] === this.currentRead;
+	this.unRead--;
+}
+
+// Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
+ 
+ Yes I am
+
+ // this is an OOP function that deals with the reading habit of everyone one of us since closures and OOP enables us to 
+ // see the situation of a specific topic individually and the topic in this question is reading and so we can see which
+ //  books are read and which are not and the books that the person wants to read in the future etc.....
+
 
 //=============================================================================
 /*                                  Q7                                       */
@@ -174,7 +254,12 @@ d- Decrement the number of "unread" books
 //  safe('silver-bar','big') => "Can't fit"
 //  safe('money','small') => "watch gold-bar money"
 
-// Write your code here .....
+function makeSafe(initial){
+	var sizeLimit = initial;
+	addItem: function(item, itemSize){
+
+	}
+}
 
 //=============================================================================
 /*                                  Q8                                       */
@@ -204,7 +289,7 @@ d- Decrement the number of "unread" books
 //Using jQuery run a function that gets called using the button's id (#create)
 //The function takes see if the checkboxes are checked or not (true or false), use $("#id").prop('checked')
 //If all 3 checkboxes are checked add an list item with the word black in it and add the "black" class to it
-//If 2 of the checkboxes are checked add (purple = blue + red), (green = blue + yellow), (orange = red + orange)
+//If 2 of the checkboxes are checked add (purple = blue + red), (green = blue + yellow), (orange = red + yellow)
 //If 1 of the checkboxes is checked add (yellow, blue or red) as li and the class to it
 
 //Using jQuery call a function from the button's id (#delete)
@@ -215,13 +300,14 @@ d- Decrement the number of "unread" books
 /*                              Q10                                           */
 //================================================================================
 // Theoretical questions.
-// 1- In your own words,Why do we use Closures ?
-
-// 2- In OOP, what does "this" refer to ?
+// 1- In your own words,Why do we use Closures ? in order to get privacy and security to have each individual getting his or her info
+                                                 // and to avoid writing long codes and repeating ourselves(stay DRY)    
+// 2- In OOP, what does "this" refer to ? it refers to the parameters or the values that are in the bigger function or in the main function because the rest 
+// of the function are in the global scope and they can't access anything inside the main function (this is for security)
 
 // 3- What is jQuery?
-
-// 4- what is the diffrence between Closure's methods and The OOP's methods?
+// it is a javascript library that helps us with implementing operations in html code (DOM)
+// 4- what is the diffrence between Closure's methods and The OOP's methods?closures have the functions inside the main function but the OOP has the functions outside in the global scope
 
 
 
